@@ -1,17 +1,20 @@
 {
   "name": "ave-env",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon",
+    "build": "tsc",
+    "publish": "tsc && npm publish --access public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pestsov-v/ave-env.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vladyslav Pestsov <pestsov.js@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pestsov-v/ave-env/issues"

@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import IEnv, {PrivateVariables} from "../types/env";
+import IEnv, {PrivateVariables} from "../types/index";
 
 // TODO created method to implements node_env modes
 
