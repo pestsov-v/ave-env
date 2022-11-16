@@ -48,4 +48,4 @@ class Env implements IEnv {
     }
 }
 
-export default new Env();
+export default Env;
