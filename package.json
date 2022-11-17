@@ -3,24 +3,28 @@
   "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
-  "types": "types/index.d.ts",
+  "types": "lib/index.d.ts",
   "files": [
-    "lib",
-    "types"
+    "lib/**/*",
+    "types/**/*",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "dev:server": "nodemon",
     "prod:server": "tsc",
     "init:docs": "docsify init ./docs",
     "dev:docs": "docsify serve docs",
-    "dev:all": "npm run dev:server & npm run dev:docs",
     "publish": "npm publish --access public && echo \"Successfully released version $npm_package_version.\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pestsov-v/ave-env.git"
   },
-  "keywords": [],
+  "keywords": [
+    "Env Reader",
+    "Private variables"
+  ],
   "author": "Vladyslav Pestsov <pestsov.js@gmail.com>",
   "license": "ISC",
   "bugs": {
