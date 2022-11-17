@@ -1,17 +1,13 @@
 {
   "name": "ave-env",
-  "version": "1.1.10",
+  "version": "1.1.1",
   "description": "",
-  "main": "lib/index.js",
-  "types": "types/index.d.ts",
-  "files": [
-    "lib",
-    "types"
-  ],
+  "main": "./index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",
-    "publish": "npm publish --access public && echo \"Successfully released version $npm_package_version.\""
+    "publish": "tsc && npm publish --access public"
   },
   "repository": {
     "type": "git",
