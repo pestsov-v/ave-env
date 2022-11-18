@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{docsify, docsify-copy-code, docsify-footer-enh, docsify-pagination, docsify-pagination-keyboard-helper, docsify-plugin-flexible-alerts, docsify-tabs, index, prism-typescript, prismjs, style, vue}" />
+  </component>
+</project>

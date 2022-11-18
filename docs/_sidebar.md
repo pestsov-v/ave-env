@@ -1,0 +1,6 @@
+- [Главная](envReader/main.md)
+- [Переменные](envReader/variables-naming.md)
+- [Конфигурации для режимов работы](envReader/conf-for-mode-working.md)
+- [Расположение файлов конфигурации](envReader/folrder-with-conf.md)
+- [Доступ к переменным](envReader/access-to-env.md)
+- [Примеры](envReader/examples.md)

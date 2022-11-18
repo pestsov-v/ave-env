@@ -1,10 +1,10 @@
 import fs from "fs";
 import path from "path";
-import IEnv, {PrivateVariables} from "../types/index";
+import IEnvReader, {PrivateVariables} from "../types/index";
 
 // TODO created method to implements node_env modes
 
-class Env implements IEnv {
+class EnvReader implements IEnvReader {
     private _variables: PrivateVariables;
     private _configs: string[];
     private _configPath: string;
@@ -28,8 +28,8 @@ class Env implements IEnv {
         this.setVariables();
     }
 
-    public setConfigs(configFolderPath?: string): void {
-        this._configFolderPath = configFolderPath ?? this._configFolderPath
+    public setConfigs(path?: string): void {
+        this._configFolderPath = path ?? this._configFolderPath
 
         this._configs = fs
             .readdirSync(this._configFolderPath)
@@ -37,8 +37,8 @@ class Env implements IEnv {
         this._configs.map((config) => this.setConfig(config));
     }
 
-    public get<T extends number | string | boolean>(variableName: string): T {
-        return process.env[variableName] as T;
+    public get<T extends number | string | boolean>(name: string): T {
+        return process.env[name] as T;
     }
 
     private setVariables() {
@@ -48,4 +48,4 @@ class Env implements IEnv {
     }
 }
 
-export default Env;
+export default new EnvReader();
