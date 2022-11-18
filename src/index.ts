@@ -1,14 +1,9 @@
 import fs from "fs";
-import IEnvReader, {EnvKind, TypeKind} from "../types/index";
+import IEnvReader, {EnvKind, ScopeKind, TypeKind} from "../types/index";
 
-// TODO created method to implements node_env modes
-// TODO created custom profile_modes
-// TODO created hierarchy to modes
-// TODO created functionality to test environment and propose environment
-// TODO add support to keys
-// TODO add support to modes paths
-// TODO add created seed manifest
-// TODO add optional initial configuration to constructor with fields mode: true / keys: true
+// TODO created hierarchy to modes // n
+// TODO add created seed manifest // n
+// TODO add optional initial configuration to constructor with fields mode: true / keys: true // n
 
 class EnvReader implements IEnvReader {
     private _configPath: string;
@@ -16,7 +11,10 @@ class EnvReader implements IEnvReader {
 
     constructor() {
         this._configPath = "";
-        this._folderPath = `${process.cwd()}/config/`;
+        this._folderPath = `${process.cwd()}/config`;
+
+        this.setModeOrKeys('mode')
+        this.setModeOrKeys('key')
     }
 
     public setConfig(config: string, configPath?: string): void {
@@ -66,18 +64,18 @@ class EnvReader implements IEnvReader {
     }
 
     public getStr(name: string, defaultValue?: string): string {
-        return this.get<string>(name) ?? defaultValue
+        return this._get<string>(name, 'string') ?? defaultValue
     }
 
     public getNum(name: string, defaultValue?: number): number {
-        return this.get<number>(name) ?? defaultValue
+        return this._get<number>(name, 'number') ?? defaultValue
     }
 
     public getBool(name: string, defaultValue?: boolean): boolean {
-        return this.get<boolean>(name) ?? defaultValue
+        return this._get<boolean>(name, 'boolean') ?? defaultValue
     }
 
-    private get<T extends string | number | boolean>(name: string, type?: TypeKind): T {
+    private _get<T extends string | number | boolean>(name: string, type?: TypeKind): T {
         const variable = process.env[name]
         if (variable === undefined || variable === '') {
             const e = new Error(`Could not read the "${name}" configuration parameter`)
@@ -101,6 +99,15 @@ class EnvReader implements IEnvReader {
                 return variable === 'true' ? true as T : false as T
             default:
                 return variable as T
+        }
+    }
+
+    private setModeOrKeys(scope: ScopeKind) {
+        const scopePath = `${this._folderPath}/env.${scope}.json`
+        const scopes = JSON.parse(fs.readFileSync(scopePath).toString())
+        for (const scope in scopes) {
+            const scopeVars = JSON.parse(fs.readFileSync(scopes[scope]).toString())
+            this._setVariables(scopeVars)
         }
     }
 }
