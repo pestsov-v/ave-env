@@ -3,4 +3,4 @@
 - Простой в установке, мощный в управлении :fire:
 
 [GitHub](https://github.com/pestsov-v/ave-env)
-[Начать](envReader/main.md)
+[Начать](ave-env-reader/main.md)
