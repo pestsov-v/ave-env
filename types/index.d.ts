@@ -9,14 +9,10 @@ interface IEnvReader {
      * @param path - absolute path to folder with configs. if configPath is missed - envReader has been read the "config" folder who can be created into app root folder.
      */
     setConfigs(path?: string): void;
-    /**
-     * @description Get specify private variable from `process.env`
-     * @typeParam T - Data type. Can be set the number string or boolean if variableName should be this type.
-     * @param name - Required parameter. Key private variable
-     * @param type - Optional parameter. Add the specific type of value and then value has been transformed in this type
-     * @returns Private variable with specify data type
-     * */
-    get(name: string, type?: TypeKind): string | number | boolean;
+
+    getStr(name: string, defaultValue?: string): string
+    getNum(name: string, defaultValue?: number): number
+    getBool(name: string, defaultValue?: boolean): boolean
 }
 
 export type TypeKind = 'string' | 'number' | 'boolean'

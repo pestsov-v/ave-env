@@ -8,6 +8,7 @@ import IEnvReader, {EnvKind, TypeKind} from "../types/index";
 // TODO add support to keys
 // TODO add support to modes paths
 // TODO add created seed manifest
+// TODO add optional initial configuration to constructor with fields mode: true / keys: true
 
 class EnvReader implements IEnvReader {
     private _configPath: string;
@@ -54,13 +55,29 @@ class EnvReader implements IEnvReader {
         })
     }
 
-    private _setVariables(variables: Record<string, string>): void {
+    private _setVariables(variables: Record<string, string | number | boolean>): void {
         for (const variable in variables) {
-            process.env[variable] = variables[variable];
+            let finallyVariable = variables[variable]
+            if (typeof finallyVariable !== 'string') {
+                finallyVariable = String(finallyVariable)
+            }
+            process.env[variable] = finallyVariable;
         }
     }
 
-    public get(name: string, type?: TypeKind): string | number | boolean {
+    public getStr(name: string, defaultValue?: string): string {
+        return this.get<string>(name) ?? defaultValue
+    }
+
+    public getNum(name: string, defaultValue?: number): number {
+        return this.get<number>(name) ?? defaultValue
+    }
+
+    public getBool(name: string, defaultValue?: boolean): boolean {
+        return this.get<boolean>(name) ?? defaultValue
+    }
+
+    private get<T extends string | number | boolean>(name: string, type?: TypeKind): T {
         const variable = process.env[name]
         if (variable === undefined || variable === '') {
             const e = new Error(`Could not read the "${name}" configuration parameter`)
@@ -70,22 +87,22 @@ class EnvReader implements IEnvReader {
 
         switch (type) {
             case 'string':
-                return variable
+                return variable as T
             case 'number':
-                  const value = Number(variable)
-                    if (Number.isNaN(value)) {
-                        throw new Error('Wrong value for numeric parameter');
-                    }
-                    return value
+                const value = Number(variable)
+                if (Number.isNaN(value)) {
+                    throw new Error('Wrong value for numeric parameter');
+                }
+                return value as T
             case 'boolean':
                 if (variable !== 'false' && variable !== 'true') {
                     throw new Error('Wrong value for boolean parameter');
                 }
-                return variable !== 'false'
+                return variable === 'true' ? true as T : false as T
             default:
-                return variable
+                return variable as T
         }
     }
 }
 
-export default new EnvReader();
+export default EnvReader;
