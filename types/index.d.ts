@@ -10,17 +10,16 @@ interface IEnvReader {
      */
     setConfigs(path?: string): void;
     /**
-     * @description Get specify private variable into `process.env`
+     * @description Get specify private variable from `process.env`
      * @typeParam T - Data type. Can be set the number string or boolean if variableName should be this type.
-     * @param name - Key private variable
+     * @param name - Required parameter. Key private variable
+     * @param type - Optional parameter. Add the specific type of value and then value has been transformed in this type
      * @returns Private variable with specify data type
      * */
-    get<T extends number | string | boolean>(name: string): T;
+    get(name: string, type?: TypeKind): string | number | boolean;
 }
 
-export type PrivateVariables = {
-    [key: string]: string;
-};
+export type TypeKind = 'string' | 'number' | 'boolean'
 
 export const enum EnvKind {
     DEVELOPMENT =  'development',
