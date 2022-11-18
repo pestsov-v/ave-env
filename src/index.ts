@@ -16,22 +16,23 @@ class EnvReader implements IEnvReader {
     }
 
     public setConfig(config: string, configPath?: string): void {
+        const setSpecificVars = (path: string) => {
+            const readBufferSync = fs.readFileSync(path).toString();
+            const variables = JSON.parse(readBufferSync);
+            this.setVariables(variables);
+        }
+
         if (configPath) {
             this._configPath = configPath
         } else {
             if (process.env.NODE_ENV === EnvKind.DEVELOPMENT || EnvKind.PRODUCTION || EnvKind.TEST) {
                 this._configPath = `${process.cwd()}/config/${config}.${process.env.NODE_ENV}.json`
-                const readBufferSync = fs.readFileSync(this._configPath).toString();
-                const variables = JSON.parse(readBufferSync);
-                this.setVariables(variables);
+                setSpecificVars(this._configPath)
             }
-
             const hasConfig = fs.readdirSync(this._folderPath).includes(`${config}.json`)
             if (hasConfig) {
                 this._configPath = `${process.cwd()}/config/${config}.json`
-                const readBufferSync = fs.readFileSync(this._configPath).toString();
-                const variables = JSON.parse(readBufferSync);
-                this.setVariables(variables);
+                setSpecificVars(this._configPath)
             }
         }
     }
