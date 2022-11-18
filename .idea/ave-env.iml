@@ -20,5 +20,7 @@
     <orderEntry type="library" name="docsify-copy-code" level="application" />
     <orderEntry type="library" name="vue" level="application" />
     <orderEntry type="library" name="style" level="application" />
+    <orderEntry type="library" name="docsify-mermaid" level="application" />
+    <orderEntry type="library" name="mermaid" level="application" />
   </component>
 </module>

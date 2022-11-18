@@ -3,8 +3,11 @@ import IEnvReader, {EnvKind, TypeKind} from "../types/index";
 
 // TODO created method to implements node_env modes
 // TODO created custom profile_modes
-// TODO created hierarhy to modes
+// TODO created hierarchy to modes
 // TODO created functionality to test environment and propose environment
+// TODO add support to keys
+// TODO add support to modes paths
+// TODO add created seed manifest
 
 class EnvReader implements IEnvReader {
     private _configPath: string;
