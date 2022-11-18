@@ -22,4 +22,10 @@ export type PrivateVariables = {
     [key: string]: string;
 };
 
+export const enum EnvKind {
+    DEVELOPMENT =  'development',
+    PRODUCTION = 'production',
+    TEST = 'test'
+}
+
 export default IEnvReader

@@ -1,49 +1,59 @@
 import fs from "fs";
-import path from "path";
-import IEnvReader, {PrivateVariables} from "../types/index";
+import IEnvReader, {EnvKind} from "../types/index";
 
 // TODO created method to implements node_env modes
+// TODO created custom profile_modes
+// TODO created hierarhy to modes
+// TODO created functionality to test environment and propose environment
 
 class EnvReader implements IEnvReader {
-    private _variables: PrivateVariables;
-    private _configs: string[];
     private _configPath: string;
-    private _configFolderPath: string;
+    private _folderPath: string;
 
     constructor() {
-        this._variables = {};
-        this._configs = [];
         this._configPath = "";
-        this._configFolderPath = path.join(__dirname, `../../config/`);
+        this._folderPath = `${process.cwd()}/config/`;
     }
 
-    public setConfig(config: string, configPath?: string) {
-        this._configPath = configPath ?? path.join(
-            __dirname,
-            `../../config/${config}.config.json`
-        )
+    public setConfig(config: string, configPath?: string): void {
+        if (configPath) {
+            this._configPath = configPath
+        } else {
+            if (process.env.NODE_ENV === EnvKind.DEVELOPMENT || EnvKind.PRODUCTION || EnvKind.TEST) {
+                this._configPath = `${process.cwd()}/config/${config}.${process.env.NODE_ENV}.json`
+                const readBufferSync = fs.readFileSync(this._configPath).toString();
+                const variables = JSON.parse(readBufferSync);
+                this.setVariables(variables);
+            }
 
-        const readBufferSync = fs.readFileSync(this._configPath).toString();
-        this._variables = JSON.parse(readBufferSync);
-        this.setVariables();
+            const hasConfig = fs.readdirSync(this._folderPath).includes(`${config}.json`)
+            if (hasConfig) {
+                this._configPath = `${process.cwd()}/config/${config}.json`
+                const readBufferSync = fs.readFileSync(this._configPath).toString();
+                const variables = JSON.parse(readBufferSync);
+                this.setVariables(variables);
+            }
+        }
     }
 
     public setConfigs(path?: string): void {
-        this._configFolderPath = path ?? this._configFolderPath
+        this._folderPath = path ?? this._folderPath
 
-        this._configs = fs
-            .readdirSync(this._configFolderPath)
-            .map((config) => config.split(".")[0]);
-        this._configs.map((config) => this.setConfig(config));
+        fs.readdirSync(this._folderPath).forEach(config => {
+            const configChunks = config.split('.')
+            if (configChunks[1] === process.env.NODE_ENV) {
+                this.setConfig(configChunks[0])
+            }
+        })
     }
 
     public get<T extends number | string | boolean>(name: string): T {
         return process.env[name] as T;
     }
 
-    private setVariables() {
-        for (const variable in this._variables) {
-            process.env[variable] = this._variables[variable];
+    private setVariables(variables: Record<string, string>): void {
+        for (const variable in variables) {
+            process.env[variable] = variables[variable];
         }
     }
 }
