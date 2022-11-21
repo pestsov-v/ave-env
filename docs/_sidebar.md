@@ -6,5 +6,5 @@
 - [Использование ключей](ave-env-reader/use-keys.md ":include :type=code")
 - [Слепки конфигураций](ave-env-reader/snapshot-conf ":include :type=code")
 - [Доступ к переменным](ave-env-reader/access-to-env ":include :type=code")
-- [Экосистема](ave-env-reader/ecosystem ":include :type=code")
-- [Примеры](ave-env-reader/examples ":include :type=code")
+- [Экосистема](https://pestsov-v/github.io/ave-env-reader/ecosystem ":include :type=code")
+- [Примеры](https://pestsov-v/github.io/ave-env-reader/examples.md ":include :type=code")
