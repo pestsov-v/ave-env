@@ -1,2 +1,2 @@
-- [Главная](ave-env-reader/main.md)
+- [Главная](main.md)
 - [Язык]()
