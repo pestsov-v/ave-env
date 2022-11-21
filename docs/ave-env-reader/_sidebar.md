@@ -1,8 +1,8 @@
 <!-- docs/_sidebar.md -->
 
-- [Главная](ave-env-reader/main.md)
-- [Переменные](ave-env-reader/variables-naming.md)
-- [Конфигурации для режимов работы](ave-env-reader/conf-for-mode-working.md)
+- [Главная](main.md)
+- [Переменные](variables-naming.md)
+- [Конфигурации для режимов работы](conf-for-mode-working.md)
 - [Расположение файлов конфигурации](folrder-with-conf.md)
 - [Использование модов](diff-level-privs.md)
 - [Использование ключей](use-keys.md)
