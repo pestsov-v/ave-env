@@ -84,9 +84,7 @@ export class EnvReader implements IEnvReader {
     private _get<T extends string | number | boolean>(name: string, type?: TypeKind): T {
         const variable = process.env[name]
         if (variable === undefined || variable === '') {
-            const e = new Error(`Could not read the "${name}" configuration parameter`)
-            this._logger.error(e)
-            throw e
+            this._logger.error(`Could not read the "${name}" configuration parameter`)
         }
 
         switch (type) {
@@ -96,13 +94,11 @@ export class EnvReader implements IEnvReader {
                 const value = Number(variable)
                 if (Number.isNaN(value)) {
                     this._logger.error('Wrong value for numeric parameter')
-                    throw new Error('Wrong value for numeric parameter');
                 }
                 return value as T
             case 'boolean':
                 if (variable !== 'false' && variable !== 'true') {
                     this._logger.error('Wrong value for boolean parameter')
-                    throw new Error('Wrong value for boolean parameter');
                 }
                 return variable === 'true' ? true as T : false as T
             default:

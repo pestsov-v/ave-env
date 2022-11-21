@@ -1,1 +1,3 @@
-export * from './env-reader'
+import {EnvReader} from "./env-reader";
+
+export default EnvReader

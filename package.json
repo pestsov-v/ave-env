@@ -1,6 +1,6 @@
 {
-  "name": "ave-env",
-  "version": "1.1.2",
+  "name": "ave-env-reader",
+  "version": "1.1.13",
   "description": "",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -9,7 +9,7 @@
     "build": "tsc",
     "init:docs": "docsify init ./docs",
     "dev:docs": "docsify serve docs",
-    "publish": "tsc && npm publish --access public"
+    "publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/pestsov-v/ave-env/issues"
   },
-  "homepage": "https://github.com/pestsov-v/ave-env#readme",
+  "homepage": "https://pestsov-v.github.io/ave-env-reader/",
   "devDependencies": {
     "@types/node": "^18.11.9",
     "docsify": "^4.13.0",
