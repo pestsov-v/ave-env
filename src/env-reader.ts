@@ -1,12 +1,9 @@
 import fs from "fs";
 import logger from "./logger";
 
-import {ILogger} from "../types/logger";
-import {IEnvReader, EnvOptions} from "../types";
-import {EnvKind, ScopeKind, TypeKind} from "../types/env-reader";
-
-// TODO created hierarchy to modes // n
-// TODO add created seed manifest // n
+import { ILogger } from "../types/logger";
+import { IEnvReader, EnvOptions } from "../types";
+import { EnvKind, ScopeKind, TypeKind } from "../types/env-reader";
 
 export class EnvReader implements IEnvReader {
     private readonly _logger: ILogger
@@ -21,9 +18,6 @@ export class EnvReader implements IEnvReader {
 
         if (options?.mode) this.setModeOrKeys('mode')
         if (options?.keys) this.setModeOrKeys('key')
-
-
-
     }
 
     public setConfig(config: string, configPath?: string): void {
@@ -90,7 +84,6 @@ export class EnvReader implements IEnvReader {
     private _get<T extends string | number | boolean>(name: string, type?: TypeKind): T {
         const variable = process.env[name]
         if (variable === undefined || variable === '') {
-
             const e = new Error(`Could not read the "${name}" configuration parameter`)
             this._logger.error(e)
             throw e

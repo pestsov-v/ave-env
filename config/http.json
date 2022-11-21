@@ -1,5 +1,6 @@
 {
   "HTTP_LOCALHOST": "host",
   "HTTP_NUM": true,
-  "SODU_PORT": 212121
+  "HTTP_PORT": 212121,
+  "SODU_PORT": "21122"
 }

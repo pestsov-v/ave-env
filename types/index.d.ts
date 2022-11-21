@@ -17,8 +17,8 @@ export namespace AveEnvReader {
     }
 
     export type EnvOptions = {
-        mode: boolean
-        keys: boolean
+        mode?: boolean
+        keys?: boolean
     }
 }
 
