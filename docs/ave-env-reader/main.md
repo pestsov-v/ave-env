@@ -53,7 +53,8 @@ envReader.setConfigs();
 #### **TypeScript**
 
 ```typescript
-import envReader from 'ave-env-reader';
+import envReader from 'docs/ave-env-reader';
+
 envReader.setConfigs();
 ```
 <!-- tabs:end -->
