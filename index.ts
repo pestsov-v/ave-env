@@ -1,4 +1,4 @@
-import EnvReader from './src/index'
+import {EnvReader} from './src'
 const envReader = new EnvReader()
 envReader.setConfigs()
 // console.log(process.env.HTTP_LOCALHOST)
