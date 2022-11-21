@@ -1,14 +1,12 @@
 import fs from "fs";
-import IEnvReader  from "../types/index";
-
-import {ILogger} from "../types/logger";
-import {EnvKind, ScopeKind, TypeKind} from "../types/env-reader";
 import logger from "./logger";
 
+import {ILogger} from "../types/logger";
+import {IEnvReader, EnvOptions} from "../types";
+import {EnvKind, ScopeKind, TypeKind} from "../types/env-reader";
 
 // TODO created hierarchy to modes // n
 // TODO add created seed manifest // n
-// TODO add optional initial configuration to constructor with fields mode: true / keys: true // n
 
 export class EnvReader implements IEnvReader {
     private readonly _logger: ILogger
@@ -16,13 +14,16 @@ export class EnvReader implements IEnvReader {
     private _folderPath: string;
 
 
-    constructor() {
+    constructor(options?: EnvOptions) {
         this._configPath = "";
         this._folderPath = `${process.cwd()}/config`;
         this._logger = logger
 
-        this.setModeOrKeys('mode')
-        this.setModeOrKeys('key')
+        if (options?.mode) this.setModeOrKeys('mode')
+        if (options?.keys) this.setModeOrKeys('key')
+
+
+
     }
 
     public setConfig(config: string, configPath?: string): void {
