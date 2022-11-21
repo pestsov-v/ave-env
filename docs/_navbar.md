@@ -1,2 +1,2 @@
-- [Главная](https://pestsov-v.github.io/ave-env-reader/main.md)
+- [Главная](https://pestsov-v.github.io/ave-env-reader/main)
 - [Язык]()
