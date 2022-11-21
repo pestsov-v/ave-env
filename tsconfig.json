@@ -63,7 +63,6 @@
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
-  "exclude": [
-    "node_modules", "lib"
-  ]
+  "include": ["lib"],
+  "exclude": ["node_modules", "src", "config", "docs", ".idea", "types", "nodemon.json", "tsconfig.json"]
 }

@@ -11,6 +11,7 @@
     "dev:docs": "docsify serve docs",
     "publish": "npm publish --access public"
   },
+  "files": ["lib/*", "package.json", "package-lock.json", "types/index.d.ts"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pestsov-v/ave-env.git"
