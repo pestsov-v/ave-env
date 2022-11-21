@@ -31,9 +31,7 @@
   <div data-app id="main">Please wait...</div>
   <script>
     window.$docsify = {
-      alias: {
-        '/.*_sidebar.md': '/_sidebar.md'
-      },
+        ext: '.md',
       name: 'EnvReader',
       repo: 'https://github.com/pestsov-v/ave-env',
       loadSidebar: true,
@@ -43,10 +41,9 @@
       search: {
         placeholder: "Поиск..."
       },
-        baseLink: '/',
-      nameLink: {
-        "/": "#/"
-      },
+        notFoundPage: true,
+        basePath: '/',
+      nameLink: "/",
       el: '#main',
       coverpage: true,
       onlyCover: true,
