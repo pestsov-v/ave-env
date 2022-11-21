@@ -43,8 +43,7 @@
         placeholder: "Поиск..."
       },
         notFoundPage: true,
-        basePath: '/',
-      nameLink: '/',
+      nameLink: '#/',
       el: '#main',
       subMaxLevel: 3,
       tabs: {
@@ -72,6 +71,9 @@
         style: 'text-align: right;',
         class: 'className',
       },
+        alias: {
+            '/_sidebar.md': '/ave-env-reader/_sidebar.md'
+        }
     }
   </script>
 
