@@ -22,7 +22,6 @@
   "bugs": {
     "url": "https://github.com/pestsov-v/ave-env/issues"
   },
-  "homepage": "https://pestsov-v.github.io/ave-env-reader/",
   "devDependencies": {
     "@types/node": "^18.11.9",
     "docsify": "^4.13.0",
