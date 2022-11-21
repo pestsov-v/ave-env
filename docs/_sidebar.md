@@ -5,6 +5,6 @@
 - [Использование модов](ave-env-reader/diff-level-privs.md)
 - [Использование ключей](ave-env-reader/use-keys.md)
 - [Слепки конфигураций](ave-env-reader/snapshot-conf.md)
-- [Доступ к переменным](ave-env-reader/access-to-env.md)
+- [Доступ к переменным](access-to-env.md)
 - [Экосистема](ave-env-reader/ecosystem.md)
 - [Примеры](ave-env-reader/examples.md)
